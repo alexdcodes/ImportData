@@ -19,5 +19,16 @@ dec     TEXT,
 bmw     TEXT, 
 audi    TEXT,
 gas     TEXT,
-washerfluid
+washer  TEXT
 ''')
+
+q = "INSERT INTO fod VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+
+for line in open ('file.txt'):
+    fields = line.split('^')
+    vals = [convert(f) for f in fields[:field_count]]
+    curs.execute(query, vals)
+
+
+conn.commit()
+conn.close()
